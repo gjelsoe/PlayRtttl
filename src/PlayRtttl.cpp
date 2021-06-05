@@ -234,10 +234,10 @@ void stopPlayRtttl(void) {
     ledcWriteTone(0,0);
 #else
     noTone(sPlayRtttlState.TonePin);
-#if defined(TCCR2A)
-    // reset direct hardware toggle output at OC2A / pin 11
-    TCCR2A &= ~_BV(COM2A0);
-#endif
+//#if defined(TCCR2A)
+//    // reset direct hardware toggle output at OC2A / pin 11
+//    TCCR2A &= ~_BV(COM2A0);
+//#endif
 #endif
     // noTone sets pin to LOW ->  need to handle inverted pin mode here
     if (sPlayRtttlState.Flags.IsTonePinInverted) {
@@ -436,12 +436,12 @@ bool updatePlayRtttl(void) {
             tone(sPlayRtttlState.TonePin, tFrequency, tDuration - (tDuration >> 4));
 #  endif
 
-#  if defined(TCCR2A)
-            if (sPlayRtttlState.TonePin == 11) {
-                // switch to direct hardware toggle output at OC2A / pin 11
-                TCCR2A |= _BV(COM2A0);
-            }
-#  endif
+//#  if defined(TCCR2A)
+//            if (sPlayRtttlState.TonePin == 11) {
+//                // switch to direct hardware toggle output at OC2A / pin 11
+//                TCCR2A |= _BV(COM2A0);
+//            }
+//#  endif
 #endif // defined(ESP32)
 
         } else {
@@ -450,10 +450,10 @@ bool updatePlayRtttl(void) {
             ledcWriteTone(0,0);
 #else
             noTone(sPlayRtttlState.TonePin);
-#if defined(TCCR2A)
-            // reset direct hardware toggle output at OC2A / pin 11
-            TCCR2A &= ~_BV(COM2A0);
-#endif
+//#if defined(TCCR2A)
+//            // reset direct hardware toggle output at OC2A / pin 11
+//            TCCR2A &= ~_BV(COM2A0);
+//#endif
 #endif // defined(ESP32)
 
             if (sPlayRtttlState.Flags.IsTonePinInverted) {
