@@ -77,7 +77,7 @@ void startPlayRtttl(uint8_t aTonePin, const char *aRTTTLArrayPtr, void (*aOnComp
     sPlayRtttlState.OnComplete = aOnComplete;
     sPlayRtttlState.TonePin = aTonePin;
 #if defined(ESP32)
-    ledcAttachPin(aTonePin, 2);
+    ledcAttachPin(aTonePin, 0);
 #endif
     int tNumber;
     /*
@@ -231,7 +231,7 @@ void startPlayRtttl(uint8_t aTonePin, const char *aRTTTLArrayPtr, void (*aOnComp
 
 void stopPlayRtttl(void) {
 #if defined(ESP32)
-    ledcWriteTone(0,2);
+    ledcWriteTone(0,0);
 #else
     noTone(sPlayRtttlState.TonePin);
 #if defined(TCCR2A)
@@ -447,7 +447,7 @@ bool updatePlayRtttl(void) {
         } else {
             // Play pause, need to handle inverted pin mode here
 #if defined(ESP32)
-            ledcWriteTone(0,2);
+            ledcWriteTone(0,0);
 #else
             noTone(sPlayRtttlState.TonePin);
 #if defined(TCCR2A)
