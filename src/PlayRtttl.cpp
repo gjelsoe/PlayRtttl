@@ -232,6 +232,7 @@ void startPlayRtttl(uint8_t aTonePin, const char *aRTTTLArrayPtr, void (*aOnComp
 void stopPlayRtttl(void) {
 #if defined(ESP32)
     ledcWriteTone(0,0);
+    ledcDetachPin(26);
 #else
     noTone(sPlayRtttlState.TonePin);
 #if defined(TCCR2A)
@@ -417,7 +418,7 @@ bool updatePlayRtttl(void) {
 #endif // defined(__AVR__)
 
 #if defined(ESP32)
-            ledcAttachPin(26, 2);
+            ledcAttachPin(26, 0);
             ledcWriteTone(0, tFrequency);
 #else
 #  if defined(SUPPORT_RTX_EXTENSIONS)
