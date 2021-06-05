@@ -447,7 +447,8 @@ bool updatePlayRtttl(void) {
         } else {
             // Play pause, need to handle inverted pin mode here
 #if defined(ESP32)
-            ledcWriteTone(0,0);
+            //ledcWriteTone(0,0);
+	    ledcDetachPin(26);
 #else
             noTone(sPlayRtttlState.TonePin);
 #if defined(TCCR2A)
