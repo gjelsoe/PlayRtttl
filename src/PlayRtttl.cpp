@@ -417,6 +417,7 @@ bool updatePlayRtttl(void) {
 #endif // defined(__AVR__)
 
 #if defined(ESP32)
+            ledcAttachPin(26, 2);
             ledcWriteTone(0, tFrequency);
 #else
 #  if defined(SUPPORT_RTX_EXTENSIONS)
